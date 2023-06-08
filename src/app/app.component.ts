@@ -10,12 +10,16 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 export class AppComponent {
   public headersTable: any[] = []; //Para los Headers de la Tabla
   public linesR: any[] = []; // Cada una de las filas de la tabla
-  public foods: any[] = [];
   public separador: any [] | undefined ;
-  errorMessage: string;
-  successMessage: string;
-  constructor(private http: HttpClient) {}
 
+  constructor(private http: HttpClient) {}
+  guardarSeparador() {
+    // Aquí puedes realizar cualquier acción adicional que desees con el separador ingresado
+    console.log('Separador guardado:', this.separador);
+  }
+  recargarPagina() {
+    location.reload(); // Recargar la página
+  }
   seleccionarOpcion() {
     console.log('Opción seleccionada:', this.separador);
   }
