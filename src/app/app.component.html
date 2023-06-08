@@ -1,0 +1,30 @@
+<div class="container" >
+  <h1 class="mt-4">Prueba</h1>
+
+  <input
+    class="form-control mb-5"
+    type="file"
+    class="upload"
+    (change)="changeListener($event.target.files)"
+  />
+  <div class="select col-sm-12 col-md-3 col-lg-3 col-xl-3 py-4">
+    <select class="form-select" [(ngModel)]="separador" (change)="seleccionarOpcion()">
+      <option value="">Seleccionar opción</option>
+      <option value=";">Punto y coma</option>
+      <option value=".">punto</option>
+      <option value="%">Porcentaje</option>
+    </select>
+</div>
+  <table class="table table-bordered table-dark mt-5">
+    <thead>
+      <tr>
+        <th *ngFor="let item of headersTable; let i = index">{{ item }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of linesR[0]; let i = index">
+        <td *ngFor="let itemm of headersTable; let j = index">{{ item[j] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
