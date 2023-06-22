@@ -11,6 +11,8 @@ export class AppComponent {
   public headersTable: any[] = []; //Para los Headers de la Tabla
   public linesR: any[] = []; // Cada una de las filas de la tabla
   public separador: any [] | undefined ;
+  enviarDatos: boolean = false;
+  public mensajeExito: boolean = false;
 
   constructor(private http: HttpClient) {}
   guardarSeparador() {
@@ -20,9 +22,7 @@ export class AppComponent {
   recargarPagina() {
     location.reload(); // Recargar la página
   }
-  seleccionarOpcion() {
-    console.log('Opción seleccionada:', this.separador);
-  }
+
   //Funcion para cargar archivos
   changeListener(files: FileList) {
     if (files && files.length > 0) {
@@ -61,20 +61,27 @@ export class AppComponent {
         this.linesR.push(tarrR);
         console.log(this.linesR);
         console.log(this.headersTable);
+      }
+    }
+  }
+        enviarPost() {
+          if (this.enviarDatos) {
         const headers = new HttpHeaders()
         .set('Content-Type', 'application/json');
         this.http.post('http://localhost:3000/personas',this.linesR, {headers}).subscribe(
           (response) => {
             console.log('Persona creada:', response);
+            this.mensajeExito = true; // Mostrar mensaje de éxito
             // Realiza las acciones necesarias con la respuesta
           },
           (error) => {
             console.error('Error al crear persona:', error);
             // Realiza el manejo de errores
-          }
-
-        );
-      };
+            }
+          );
+      }
     }
-  }
-}
+};
+
+
+

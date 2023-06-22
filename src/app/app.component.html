@@ -1,30 +1,27 @@
 <div class="container" >
   <h1 class="mt-4">Prueba</h1>
 
+
+  <div class="form-group col-sm-12 col-md-3 col-lg-3 col-xl-3 py-4">
+    <label for="separadorInput"></label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="separadorInput" [(ngModel)]="separador" placeholder="Ingrese un separador">
+      <div class="input-group-append">
+      </div>
+    </div>
+  </div>
+
   <input
     class="form-control mb-5"
     type="file"
     class="upload"
+    [disabled]="!separador"
     (change)="changeListener($event.target.files)"
   />
-  <!-- <div class="select col-sm-12 col-md-3 col-lg-3 col-xl-3 py-4">
-    <select class="form-select" [(ngModel)]="separador" (change)="seleccionarOpcion()">
-      <option value="">Seleccionar opción</option>
-      <option value=";">Punto y coma</option>
-      <option value=".">punto</option>
-      <option value="%">Porcentaje</option>
-    </select>
-</div> -->
-
-<div class="form-group col-sm-12 col-md-3 col-lg-3 col-xl-3 py-4">
-  <label for="separadorInput">Separador:</label>
-  <div class="input-group">
-    <input type="text" class="form-control" id="separadorInput" [(ngModel)]="separador" placeholder="Ingrese un separador">
-    <div class="input-group-append">
-      <button class="btn btn-primary" type="button" (click)="guardarSeparador()">Guardar</button>
-    </div>
+  <button class="btn btn-primary xl-3 py-1 mx-4"(click)="enviarDatos = true; enviarPost()">Enviar</button>
+  <div class="alert alert-success mt-3" *ngIf="mensajeExito">
+    Cargue exitoso
   </div>
-</div>
   <table class="table table-bordered table-dark mt-5">
     <thead>
       <tr>
@@ -37,5 +34,5 @@
       </tr>
     </tbody>
   </table>
-  <button class="btn btn-primary xl-3 py-2" type="button" (click)="recargarPagina()">Nuevo Cargue</button>
+  <button class="btn btn-primary xl-3 py-1" type="button" (click)="recargarPagina()">Nuevo Cargue</button>
 </div>
